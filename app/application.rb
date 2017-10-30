@@ -7,7 +7,12 @@ class Application
     if req.path == "/songs"
       item_name = req.path.split("/items/").last
       item = @@items.find { |i| i.name = item_name }
-      resp.write item.price
+      if item = nil
+        resp.write "We don't have that item"
+        resp.status = 400
+      else
+        resp.write item.price
+      end
     else
       resp.write "Route not found"
       resp.status = 404
