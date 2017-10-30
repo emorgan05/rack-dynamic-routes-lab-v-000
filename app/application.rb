@@ -8,8 +8,9 @@ class Application
 
     if req.path == "/songs"
       item_name = req.path.split("/items/").last
-      item = @@items.find { |i| i.name = item_name }
       binding.pry
+      item = @@items.find { |i| i.name = item_name }
+      
       if item != nil
         resp.write "Item not found"
         resp.status = 400
